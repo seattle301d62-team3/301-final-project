@@ -1,0 +1,31 @@
+{
+  "name": "301-final-project",
+  "version": "1.0.0",
+  "description": "## Description / Overview   The idea behind this application is to allow a user to quickly search for free images based on a keyword or random button. Then the user can save favorites to collection and further save them into a project folders. The user will also be allowed to update the details of an image, and also remove them from their collection. This application will be using a PostgresSQL database, and deployed through heroku.",
+  "main": "server.js",
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.2",
+    "express": "^4.17.1",
+    "method-override": "^3.0.0",
+    "pg": "^8.0.3",
+    "superagent": "^5.2.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seattle301d62-team3/301-final-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seattle301d62-team3/301-final-project/issues"
+  },
+  "homepage": "https://github.com/seattle301d62-team3/301-final-project#readme"
+}
