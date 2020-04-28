@@ -4,12 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Photo App</title>
+    <link href='styles/base.css' rel='stylesheet' type='text/css'>
 </head>
 <body>
-    Some text for proof
-    <form action="/search" method="POST">
-        <input type="text" name="searchQuery" placeholder="Search something here">
-    <button type="submit">CLICK TO GO TO SEARCH PAGE</button>
-    </form>
+
+  <header>
+    <ul>
+      <li><a href=''>Home</a></li>
+      <li><a href=''>Library</a></li>
+      <li><a href=''>Nav stuff</a></li>
+    </ul>
+  </header>
+  <div id='hero-image'>
+    <div id='hero-text'>
+      <form action="/search" method="POST">
+        <input type='text' name='searchQuery' placeholder='search for an image'>
+        <button type="submit">SEARCH</button>
+      </form>
+    </div>
+  </div>
+
+  <div id='features-section'>
+    <h2>Features Section</h2>
+    <article id='feature-holder'>
+      <a href=''><img src='https://via.placeholder.com/230x280/#8080'></a>
+      <a href=''><img src='https://via.placeholder.com/230x280/#8080'></a>
+      <a href=''><img src='https://via.placeholder.com/230x280/#8080'></a>
+      <a href=''><img src='https://via.placeholder.com/230x280/#8080'></a>
+    </article>
+  </div>
+
+  <div id='sample-categories'>
+    <h2>Sample Categories</h2>
+    <article id='category-holder'>
+      <a href=''><img src='https://via.placeholder.com/230x280/#8080'></a>
+      <a href=''><img src='https://via.placeholder.com/230x280/#8080'></a>
+      <a href=''><img src='https://via.placeholder.com/230x280/#8080'></a>
+      <a href=''><img src='https://via.placeholder.com/230x280/#8080'></a>
+    </article>
+  </div>
+  <footer>
+    <p>&copy; Team 3</p> <p><a href=''>link to top</a></p> <p><a href=''>about us</a></p>
+  </footer>
+
+
 </body>
 </html>
