@@ -43,7 +43,14 @@ The idea behind this application is to allow a user to quickly search for free i
 * 1.0.0 20200427 1045  
     - Initial Repo created for final Project.  
     - README started, added starter files.  
-    - Added initial server.js file and some folders.
+    - Added initial server.js file and some folders.  
+* 1.0.1 20200427 1130  
+    - Created Staging branch for holding all new features before pushing to master.  
+* 1.0.2 20200428 0905  
+    - Created index feature branch for first ejs view.  
+    - Created Search page shell ejs.  
+    
+
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details

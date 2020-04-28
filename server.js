@@ -10,6 +10,7 @@ const methodOverride = require('method-override');
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static('./public'));
+app.set('view engine', 'ejs');
 
 // Chalk - Color coding for console logs  
 const chalk = require('chalk');
@@ -36,4 +37,19 @@ dbClient.connect(err => {
       app.listen(PORT, () => console.log(`Listening on PORT: ${blue(PORT)}`));
     }
   });
-  
+
+// CRUD OPERATIONS BELOW
+
+app.get('/', homePage);  
+app.post('/search', handlePhotos)
+
+
+// Callback functions  
+
+function homePage (request, response) {
+  response.render('pages/index');
+}
+
+function handlePhotos (request, response) {
+  response.send('on search page');
+}
