@@ -7,35 +7,39 @@
     <link href='styles/base.css' rel='stylesheet' type='text/css'>
 </head>
 <body>
-    <header>
-      <ul>
-        <li><a href=''>Home</a></li>
-        <li><a href=''>Library</a></li>
-        <li><a href=''>Nav stuff</a></li>
-      </ul>
-    </header>
+  <header>
+    <ul>
+      <li><a href=''>Home</a></li>
+      <li><a href=''>Library</a></li>
+      <li><a href=''>Nav stuff</a></li>
+    </ul>
+  </header>
+  <div id='hero-image'>
+    <div id='hero-text'>
+      <form action="/search" method="POST">
+        <input type='text' name='searchQuery' placeholder='search for an image'>
+        <button type="submit">SEARCH</button>
+      </form>
+    </div>
+  </div>
 
-    <form action="/search" method="POST">
-      <input type='text' name='searchQuery' placeholder='search for an image'>
-      <button type="submit">SEARCH</button>
-    </form>
-    <h2>Features Section</h2>
-    <article id='feature-holder'>
-      <img src='https://via.placeholder.com/150x200/#8080'>
-      <img src='https://via.placeholder.com/150x200/#8080'>
-      <img src='https://via.placeholder.com/150x200/#8080'>
-      <img src='https://via.placeholder.com/150x200/#8080'>
-    </article>
-    <h2>Sample Categories</h2>
-    <article id='category-holder'>
-      <img src='https://via.placeholder.com/150x200/#8080'>
-      <img src='https://via.placeholder.com/150x200/#8080'>
-      <img src='https://via.placeholder.com/150x200/#8080'>
-      <img src='https://via.placeholder.com/150x200/#8080'>
-    </article>
-    <footer>
-      <p>&copy; Team 3</p> <p>link to top?</p> <p>about us</p>
-    </footer>
+  <h2>Features Section</h2>
+  <article id='feature-holder'>
+    <a href=''><img src='https://via.placeholder.com/230x280/#8080'></a>
+    <a href=''><img src='https://via.placeholder.com/230x280/#8080'></a>
+    <a href=''><img src='https://via.placeholder.com/230x280/#8080'></a>
+    <a href=''><img src='https://via.placeholder.com/230x280/#8080'></a>
+  </article>
+  <h2>Sample Categories</h2>
+  <article id='category-holder'>
+    <a href=''><img src='https://via.placeholder.com/230x280/#8080'></a>
+    <a href=''><img src='https://via.placeholder.com/230x280/#8080'></a>
+    <a href=''><img src='https://via.placeholder.com/230x280/#8080'></a>
+    <a href=''><img src='https://via.placeholder.com/230x280/#8080'></a>
+  </article>
+  <footer>
+    <p>&copy; Team 3</p> <a href=''>link to top</a> <a href=''>about us</a>
+  </footer>
 
 </body>
 </html>
