@@ -1,1 +1,58 @@
-/* place holder */
+
+body{
+  background-color: rgb(182, 200, 201);
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #357376;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #1E4042;
+}
+
+input{
+  line-height: 25px;
+}
+
+form{
+  text-align: center;
+  /* display: inline-block; */
+}
+h2{
+  text-align: center;
+  font-family: monospace;
+}
+article{
+  float: left;
+}
+
+article img{
+  display: inline-block;
+}
+
+footer{
+  display: inline-block;
+  background-color:   #357376;
+}
+footer p{
+  color: white;
+  display: inline-block;
+  line-height: 30px;
+}

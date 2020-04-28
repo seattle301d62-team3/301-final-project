@@ -4,13 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Photo App</title>
+    <link href='styles/base.css' rel='stylesheet' type='text/css'>
 </head>
 <body>
-    Some text for proof
-    <form action="/search" method="POST">
-    <button type="submit">CLICK TO GO TO SEARCH PAGE</button>
-    </form>
+    <header>
+      <ul>
+        <li><a href=''>Home</a></li>
+        <li><a href=''>Library</a></li>
+        <li><a href=''>Nav stuff</a></li>
+      </ul>
+    </header>
 
+    <form action="/search" method="POST">
+      <input type='text' name='searchQuery' placeholder='search for an image'>
+      <button type="submit">SEARCH</button>
+    </form>
+    <h2>Features Section</h2>
+    <article id='feature-holder'>
+      <img src='https://via.placeholder.com/150x200/#8080'>
+      <img src='https://via.placeholder.com/150x200/#8080'>
+      <img src='https://via.placeholder.com/150x200/#8080'>
+      <img src='https://via.placeholder.com/150x200/#8080'>
+    </article>
+    <h2>Sample Categories</h2>
+    <article id='category-holder'>
+      <img src='https://via.placeholder.com/150x200/#8080'>
+      <img src='https://via.placeholder.com/150x200/#8080'>
+      <img src='https://via.placeholder.com/150x200/#8080'>
+      <img src='https://via.placeholder.com/150x200/#8080'>
+    </article>
+    <footer>
+      <p>&copy; Team 3</p> <p>link to top?</p> <p>about us</p>
+    </footer>
 
 </body>
 </html>
