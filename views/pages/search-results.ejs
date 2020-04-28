@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Photo App</title>
+</head>
+<body>
+    <% apiResults.forEach(obj => { %>
+        <form action="/imageDetails" method="POST">
+            <input type="hidden" name= "category" value="<%= obj.category %>">
+            <input type="hidden" name= "name" value="<%= obj.name %>">
+            <input type="hidden" name= "description" value="<%= obj.description %>">
+            <input type="hidden" name= "full_description" value="<%= obj.full_description %>">
+            <input type="hidden" name= "image" value="<%= obj.image %>">
+            <input type="hidden" name= "small_image" value="<%= obj.small_image %>">
+            <input type="hidden" name= "thumbnail" value="<%= obj.thumbnail %>">
+            <input type="hidden" name= "author" value="<%= obj.author %>">
+            <input type="hidden" name= "download" value="<%= obj.download %>">
+            
+            <button class = "imageDeatilsButton" type="submit">
+                <img style="width: 100px;" src=<%= obj.small_image %> />
+            </button>
+        </form>
+    <% }) %> 
+
+</body>
+</html>
