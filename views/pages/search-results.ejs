@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Photo App</title>
     <link href='styles/base.css' rel='stylesheet' type='text/css'>
+    <script src="./js/app.js"></script>
 </head>
 <body>
   <%- include('../layouts/header.ejs') %>
@@ -30,7 +31,7 @@
               <fieldset class="organization">
                 <input type="text" name="client_id" value="Customer Name Here" placeholder="Customer Name">
                 <input type="text" name="project_id" value="Project Name Here" placeholder="Project Name">
-                <button type="subtmit" formaction="/save">Save this Photo</button>
+                <button type="subtmit" formaction="/save" onclick="myAlert()">Save this Photo</button>
               </fieldset>
               <!-- <button class="saveMenu">Save</button> -->
           </form>

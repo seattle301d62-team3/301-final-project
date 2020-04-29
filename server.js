@@ -32,7 +32,7 @@ app.get('/', homePage);
 app.post('/search', handleSearchForm);
 app.post('/imageDetails', imageDetails);
 app.post('/save', saveImage);
-app.post('/')
+app.get('/library', renderLibrary)
 app.get('*', fourOhFour);
 
 // Callback functions  
@@ -78,9 +78,8 @@ function saveImage (request, response) {
   let selectSQL = `SELECT * FROM pictures`;
 
   dbClient.query(insertSQL, insertValues).then(recordResponse => {
-    // inserted into DB
+    // inserted into DB and refreshed page
     response.status(204).send();
-    // What happens now that ^^^ is in there?
   })
   .catch((err) => {
     console.error('Error: Inserting into the Database ', err);
@@ -110,7 +109,7 @@ function addCustomer(request, response){
 
   dbClient.query(sql, safeValues)
     .then((results) => {
-      response.render('pages/organization-overview', {});
+      response.render('pages/library', {});
     })
 }
 
@@ -147,18 +146,24 @@ function fourOhFour (request, response) {
 
 
 
-    function renderOverview (request, response) {
-      let sql = `SELECT DISTINCT client_id FROM pictures;`;
-      let sql = `SELECT DISTINCT client_id FROM pictures WHERE project_id=$1;`;
+    function renderLibrary (request, response) {
+      let sql1 = `SELECT DISTINCT client_id FROM pictures;`;
+      let sql2 = `SELECT * FROM pictures GROUP BY client_id`
+      // let sql = `SELECT DISTINCT client_id FROM pictures WHERE project_id=$1;`;
       
-      dbClient.query(sql)
+      dbClient.query(sql1)
       .then(results => {
-          let customer = [];
-          let sql2 = `SELECT DISTINCT project_id FROM pictures WHERE client_id=$1;`;
-          let safeValues=[]
-          dbClient.query(sql2)
-
-          response.render('organization-overview', {clients, projects})
+          response.render('pages/library', { customers: results.rows });
         })
+        .catch((err) => {
+          console.error('Error: Inserting into the Database ', err);
+          response.status(500).render('pages/error', 
+          {
+            errorMessage: 'Did find what you were looking for', 
+            errorCorrect: `Make sure you're searching for an existing client or project. You may need to create a new Client or Project.`
+          });
+        }) 
 
     }
+
+
