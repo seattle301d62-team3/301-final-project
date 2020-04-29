@@ -32,6 +32,7 @@ app.get('/', homePage);
 app.post('/search', handleSearchForm);
 app.post('/imageDetails', imageDetails);
 app.post('/save', saveImage);
+app.post('/')
 app.get('*', fourOhFour);
 
 // Callback functions  
@@ -42,7 +43,7 @@ function homePage (request, response) {
 function handleSearchForm (request, response) {
   const { searchQuery } = request.body;  
   const key = process.env.API_KEY;
-  const url = `https://api.unsplash.com/search/photos?query=${searchQuery}&client_id=${key}`;
+  const url = `https://api.unsplash.com/search/photos?query=${searchQuery}&client_id=${key}&per_page=1`;
   
   superagent.get(url).then(apiResponse => {
     const data = apiResponse.body.results;
@@ -67,19 +68,27 @@ function imageDetails(request, response) {
 
 function saveImage (request, response) {
   const { category, _name, description, full_description, image, small_image, thumbnail, author, download, client_id, project_id } = request.body;
+
+  // client_id = client_id ? client_id : 'n/a';
+  // project_id = project_id ? project_id : 'n/a;
   
   let insertSQL = `INSERT INTO pictures (category, _name, description, full_description, image, small_image, thumbnail, author, download, client_id, project_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *`;
   let insertValues = [category, _name, description, full_description, image, small_image, thumbnail, author, download, client_id, project_id];
   
-  dbClient.query(insertSQL, insertValues).then(recordResponse => {
-      response.render('pages/organization-overview');
+  let selectSQL = `SELECT * FROM pictures`;
 
+  dbClient.query(insertSQL, insertValues).then(recordResponse => {
+    // inserted into DB
+    response.status(204).send();
+    // What happens now that ^^^ is in there?
   })
   .catch((err) => {
     console.error('Error: Inserting into the Database ', err);
     response.status(500).render('pages/error', 
-    {errorMessage: 'Could not get what you wanted from the API search.', 
-    errorCorrect: `Make sure you're searching for something valid.`});
+    {
+      errorMessage: 'Could not get what you wanted from the API search.', 
+      errorCorrect: `Make sure you're searching for something valid.`
+    });
   }) 
 }
 

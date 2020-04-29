@@ -7,14 +7,12 @@
 </head>
 <body>
     
-    Client A 
+    <%= customers.forEach(client => {  %>
+        <h3><% client %> </h3>
+            <%= project.forEach(project => {
+                <h5> project </h5>
 
-        - ProjectXYZ
-
-    Client B 
-
-        - Project R
-        - Project X
-
+            <%= }) %>
+    <%= }) %>
 </body>
 </html>
