@@ -9,7 +9,7 @@ The idea behind this application is to allow a user to quickly search for free i
 
 ### Dependencies
 * Express  
-* dovenv  
+* dotenv  
 * superagent  
 * ejs  
 * pg  
