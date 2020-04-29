@@ -2,6 +2,13 @@
 <img src=<%= picture.thumbnail %>>
 
 <form action="/save" method="POST">
+    <select>
+    <option value="">Folder 1</option>
+    <option value="">Folder 2</option>
+    <option value="">Folder 3</option>
+    <option value="">Folder 4</option>
+    <option value="">Folder 5</option>
+</select> 
     <input type="hidden" name= "category" value="<%= picture.category %>">
     <input type="hidden" name= "name" value="<%= picture.name %>">
     <input type="hidden" name= "description" value="<%= picture.description %>">
@@ -13,6 +20,7 @@
     <input type="hidden" name= "download" value="<%= picture.download %>">
     
     <button class = "imageDeatilsButton" type="submit" onclick="myAlert()">save button?</button>
-    <button type="submit" class="hidden" formaction="/deals/5/reject">Change Info</button>
-    <button type="submit" formaction="/deals/5/reject">Reject story</button>
+    <!-- <button type="submit" class="hidden" formaction="/deals/5/reject">Change Info</button>
+    <button type="submit" formaction="/deals/5/reject">Reject story</button> -->
+    <a href="/">Travel to home page</a> 
 </form>
