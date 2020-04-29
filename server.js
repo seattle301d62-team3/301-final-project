@@ -47,6 +47,7 @@ function handleSearchForm (request, response) {
   superagent.get(url).then(apiResponse => {
     const data = apiResponse.body.results;
     return data.map(element => new Picture(element));
+
   })
   .then(apiResults => {
     response.render('pages/search-results', { apiResults });
@@ -60,19 +61,19 @@ function handleSearchForm (request, response) {
 }
 
 function imageDetails(request, response) {
-  const picture = request.body;
+  const picture = request.body;  
   response.render('pages/image-details', { picture });
 }
 
 function saveImage (request, response) {
-  const { category, name, description, full_description, image, small_image, thumbnail, author, download } = request.body;
+  const { category, _name, description, full_description, image, small_image, thumbnail, author, download, client_id, project_id } = request.body;
   
-  let insertSQL = `INSERT INTO pictures (category, _name, description, full_description, image, small_image, thumbnail, author, download) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`;
-  let insertValues = [category, name, description, full_description, image, small_image, thumbnail, author, download];
+  let insertSQL = `INSERT INTO pictures (category, _name, description, full_description, image, small_image, thumbnail, author, download, client_id, project_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *`;
+  let insertValues = [category, _name, description, full_description, image, small_image, thumbnail, author, download, client_id, project_id];
   
   dbClient.query(insertSQL, insertValues).then(recordResponse => {
-    // item is stored
-    response.send('I saved');
+      response.render('pages/organization-overview');
+
   })
   .catch((err) => {
     console.error('Error: Inserting into the Database ', err);
@@ -80,6 +81,28 @@ function saveImage (request, response) {
     {errorMessage: 'Could not get what you wanted from the API search.', 
     errorCorrect: `Make sure you're searching for something valid.`});
   }) 
+}
+
+function selectByProject(request, response){
+  let data = request.body;
+  let client = request.body.project;
+  let sql = `SELECT * FROM pictures WHERE project_id = $1;`;
+  let safeValues = [project];
+  dbClient.query(sql, safevalues)
+    .then(results => {
+      response.render('pages/project-overview')
+    })
+}
+
+function addCustomer(request, response){
+  let data = request.body.customer;
+  let sql =  `INSERT INTO client (name) VALUES ($1);`;
+  let safeValues = [data];
+
+  dbClient.query(sql, safeValues)
+    .then((results) => {
+      response.render('pages/organization-overview', {});
+    })
 }
 
 function fourOhFour (request, response) {
@@ -112,3 +135,21 @@ function fourOhFour (request, response) {
         app.listen(PORT, () => console.log(`Listening on PORT: ${blue(PORT)}`));
       }
     });
+
+
+
+    function renderOverview (request, response) {
+      let sql = `SELECT DISTINCT client_id FROM pictures;`;
+      let sql = `SELECT DISTINCT client_id FROM pictures WHERE project_id=$1;`;
+      
+      dbClient.query(sql)
+      .then(results => {
+          let customer = [];
+          let sql2 = `SELECT DISTINCT project_id FROM pictures WHERE client_id=$1;`;
+          let safeValues=[]
+          dbClient.query(sql2)
+
+          response.render('organization-overview', {clients, projects})
+        })
+
+    }

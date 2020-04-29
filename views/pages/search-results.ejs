@@ -12,8 +12,9 @@
     <% apiResults.forEach(obj => { %>
       <div class='searched-images'>
           <form action="/imageDetails" method="POST">
+              <fieldset>
               <input type="hidden" name= "category" value="<%= obj.category %>">
-              <input type="hidden" name= "name" value="<%= obj.name %>">
+              <input type="hidden" name= "name" value="<%= obj._name %>">
               <input type="hidden" name= "description" value="<%= obj.description %>">
               <input type="hidden" name= "full_description" value="<%= obj.full_description %>">
               <input type="hidden" name= "image" value="<%= obj.image %>">
@@ -25,6 +26,13 @@
               <button class = "imageDeatilsButton" type="submit">
                   <img style="width: 100px;" src=<%= obj.small_image %> />
               </button>
+             </fieldset>
+              <fieldset class="organization">
+                <input type="text" name="client_id" value="" placeholder="Customer Name">
+                <input type="text" name="project_id" value="" placeholder="Project Name">
+                <button type="subtmit" formaction="/save"> Save this Photo</button>
+              </fieldset>
+              <button class="saveMenu">Save</button>
           </form>
         </div>
       <% }) %> 
