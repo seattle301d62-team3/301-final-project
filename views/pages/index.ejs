@@ -11,9 +11,9 @@
   <%- include('../layouts/header.ejs') %>
   <div id='hero-image'>
     <div id='hero-text'>
-      <form action="/search" method="POST">
-        <input type='text' name='searchQuery' placeholder='search for an image'>
-        <button type="submit">SEARCH</button>
+      <form id='search-form' action="/search" method="POST" >
+        <input id='search-input' type='text' name='searchQuery' placeholder='   search for an image'>
+        <button id='search-submit' type="submit">SEARCH</button>
       </form>
     </div>
   </div>
@@ -21,19 +21,43 @@
   <div id='features-section'>
     <h2>Features Section</h2>
     <article id='feature-holder'>
-      <a href=''><img src='https://via.placeholder.com/200x250/#8080'></a>
-      <a href=''><img src='https://via.placeholder.com/200x250/#8080'></a>
-      <a href=''><img src='https://via.placeholder.com/200x250/#8080'></a>
-      <a href=''><img src='https://via.placeholder.com/200x250/#8080'></a>
+
+      <button id='cat-button' type='submit'>
+        <img src='/images/whitecat.jpeg'>
+      </button>
+
+      <button id='dog-button' type='submit'>
+        <img src='/images/dalmation.jpeg'>
+      </button>
+
+      <button id='landscape-button' type='submit'>
+        <img src='/images/landscape.jpeg'>
+      </button>
+
+      <button id='sports-button' type='submit'>
+        <img src='/images/sports.jpeg'>
+
     </article>
 
   <div id='sample-categories'>
     <h2>Sample Categories</h2>
     <article id='category-holder'>
-      <a href=''><img src='https://via.placeholder.com/200x250/#8080'></a>
-      <a href=''><img src='https://via.placeholder.com/200x250/#8080'></a>
-      <a href=''><img src='https://via.placeholder.com/200x250/#8080'></a>
-      <a href=''><img src='https://via.placeholder.com/200x250/#8080'></a>
+
+      <button id='cat-button' type='submit'>
+        <img src='/images/whitecat.jpeg'>
+      </button>
+
+      <button id='dog-button' type='submit'>
+        <img src='/images/dalmation.jpeg'>
+      </button>
+
+      <button id='landscape-button' type='submit'>
+        <img src='/images/landscape.jpeg'>
+      </button>
+
+      <button id='sports-button' type='submit'>
+        <img src='/images/sports.jpeg'>
+
     </article>
   </div>
   <%- include('../layouts/footer.ejs') %>

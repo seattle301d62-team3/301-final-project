@@ -1,33 +1,45 @@
-<main>
-  <h1><%= picture.name %> </h1>
-  <img src=<%= picture.thumbnail %>>
-  <p>Photo by: <%= picture.author  %></p>
-  <a href="<%= picture.download %>" target="_blank">Download Link.</a>
-  
-  <br><br>
-  
-  <form action="/save" method="POST">
-      <input type="hidden" name= "category" value="<%= picture.category %>">
-      <input type="hidden" name= "name" value="<%= picture.name %>">
-      <input type="hidden" name= "description" value="<%= picture.description %>">
-      <input type="hidden" name= "full_description" value="<%= picture.full_description %>">
-      <input type="hidden" name= "image" value="<%= picture.image %>">
-      <input type="hidden" name= "small_image" value="<%= picture.small_image %>">
-      <input type="hidden" name= "thumbnail" value="<%= picture.thumbnail %>">
-      <input type="hidden" name= "author" value="<%= picture.author %>">
-      <input type="hidden" name= "download" value="<%= picture.download %>">
-      
-      <select>
-          <option value="folder-1">Folder 1</option>
-          <option value="folder-2">Folder 2</option>
-          <option value="folder-3">Folder 3</option>
-          <option value="folder-4">Folder 4</option>
-          <option value="folder-5">Folder 5</option>
-      </select>
-      <button class = "imageDeatilsButton" type="submit" onclick="myAlert()">Save This Photo</button>
-  
-      <br><br>
-  
-      <a href="/">Travel to home page</a> 
-  </form>
-</main>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='styles/base.css' rel='stylesheet' type='text/css'>
+  <title>Document</title>
+</head>
+<body>
+  <main>
+    <h1><%= picture.name %> </h1> <br>
+    <img src=<%= picture.thumbnail %>> <br> 
+    <p>Photo by: <%= picture.author  %></p> <br> 
+    <a href="<%= picture.download %>" target="_blank">Download Link.</a> <br> 
+    
+    <br><br>
+    
+    <form action="/save" method="POST">
+        <input type="hidden" name= "category" value="<%= picture.category %>">
+        <input type="hidden" name= "name" value="<%= picture.name %>">
+        <input type="hidden" name= "description" value="<%= picture.description %>">
+        <input type="hidden" name= "full_description" value="<%= picture.full_description %>">
+        <input type="hidden" name= "image" value="<%= picture.image %>">
+        <input type="hidden" name= "small_image" value="<%= picture.small_image %>">
+        <input type="hidden" name= "thumbnail" value="<%= picture.thumbnail %>">
+        <input type="hidden" name= "author" value="<%= picture.author %>">
+        <input type="hidden" name= "download" value="<%= picture.download %>">
+        
+        <select>
+            <option value="folder-1">Folder 1</option>
+            <option value="folder-2">Folder 2</option>
+            <option value="folder-3">Folder 3</option>
+            <option value="folder-4">Folder 4</option>
+            <option value="folder-5">Folder 5</option>
+        </select>
+        <button class = "saveImageDeatilsButton" type="submit" onclick="myAlert()">Save This Photo</button>
+    
+        <br><br>
+    
+        <a href="/">back to home page</a> 
+    </form>
+  </main>
+</body>
+</html>
+

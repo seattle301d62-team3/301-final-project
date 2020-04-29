@@ -1,7 +1,7 @@
 /* mobile */
 
 body{
-  background-color: rgb(182, 200, 201);
+  background-color: rgb(201, 213, 213);
   width: 100%;
   margin: 0 auto;
 }
@@ -42,9 +42,8 @@ li a {
   color: white;
   text-align: center;
   text-decoration: none;
-  padding: 16px 30px;
+  padding: 14px 25px;
   height:100%;
-  /* line-height: 75px; */
 }
 
 li:hover {
@@ -52,7 +51,7 @@ li:hover {
 }
 
 #hero-image{
-  background-image: 'https://via.placeholder.com/325x480/#8080';
+  background-image: url('/images/web.png');
   background-color: #cccccc;
   height: 325px;
   background-position: center;
@@ -68,11 +67,37 @@ top: 80%;
 left: 50%;
 transform: translate(-50%, -50%);
 color: white;
+width: 70%;
 }
 
 input{
   line-height: 25px;
   
+}
+
+#search-form{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 30px;
+}
+
+#search-input{
+  width: 80%;
+  height: 34px;
+  border-radius: 20px 0 0 20px;
+  border: none;
+}
+
+#search-submit{
+  width: 17%;
+  height: 36px;
+  border: none;
+  border-radius: 0 20px 20px 0;
+}
+
+#search-submit:hover{
+  background: lightgray;
 }
 
 form{
@@ -90,6 +115,15 @@ h2{
 #features-section{
   width: 100%;
 }
+
+#sample-categories img{
+  width: 200px;
+}
+
+#feature-holder img{
+  width: 200px;
+}
+
 article{
   /* float: left; */
   width: 100%;
@@ -123,6 +157,8 @@ main{
 #imageDetailsButton{
   width: 100%;
   align-items: center;
+  border: none;
+  background: none;
 }
 
 footer{
@@ -183,7 +219,7 @@ footer p{
   }
   
   #hero-image{
-    background-image: 'https://via.placeholder.com/325x480/#8080';
+    background-image: '/public/images/web.png';
     background-color: #cccccc;
     height: 325px;
     background-position: center;
@@ -225,19 +261,19 @@ footer p{
     /* float: left; */
     width: 100%;
     display: inline-block;
-    margin-left: 10px;
+    /* margin-left: 10px; */
     flex-flow: row;
   }
-
+/* 
   article a{
     display: inline-block;
-    width: 24%;
-    
-  }
+    width: 250px;
+
+  } */
 
   article img{
     display: inline-block;
-
+    width: 250px;
   }
   
   main{
@@ -249,10 +285,10 @@ footer p{
 
   .searched-images{
     /* display: inline-block; */
-    width: 100px;
+    width: 80px;
   }
 
-  #imageDetailsButton{
+  .saveImageDetailsButton{
     width: 100%;
   }
 
@@ -261,6 +297,7 @@ footer p{
     background-color: #357376;
     width: 100%;
   }
+
   footer p{
     color: white;
     display: inline-block;
