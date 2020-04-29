@@ -43,7 +43,7 @@ function homePage (request, response) {
 function handleSearchForm (request, response) {
   const { searchQuery } = request.body;  
   const key = process.env.API_KEY;
-  const url = `https://api.unsplash.com/search/photos?query=${searchQuery}&client_id=${key}&per_page=1`;
+  const url = `https://api.unsplash.com/search/photos?query=${searchQuery}&client_id=${key}&per_page=100`;
   
   superagent.get(url).then(apiResponse => {
     const data = apiResponse.body.results;
