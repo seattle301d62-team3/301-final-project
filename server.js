@@ -43,7 +43,7 @@ function homePage (request, response) {
 function handleSearchForm (request, response) {
   const { searchQuery } = request.body;  
   const key = process.env.API_KEY;
-  const url = `https://api.unsplash.com/search/photos?query=${searchQuery}&client_id=${key}&per_page=100`;
+  const url = `https://api.unsplash.com/search/photos?query=${searchQuery}&client_id=${key}&per_page=1`;
   
   superagent.get(url).then(apiResponse => {
     const data = apiResponse.body.results;
@@ -147,13 +147,22 @@ function fourOhFour (request, response) {
 
 
     function renderLibrary (request, response) {
-      let sql1 = `SELECT DISTINCT client_id FROM pictures;`;
+      let sql1 = `SELECT DISTINCT client_id FROM pictures`;
       let sql2 = `SELECT * FROM pictures GROUP BY client_id`
       // let sql = `SELECT DISTINCT client_id FROM pictures WHERE project_id=$1;`;
       
       dbClient.query(sql1)
       .then(results => {
-          response.render('pages/library', { customers: results.rows });
+
+        let data = results.rows;
+        // console.log(customers);
+        
+
+        let customers = data.map(object => {
+          return object.client_id
+        }).sort()
+
+          response.render('pages/library', { customers });
         })
         .catch((err) => {
           console.error('Error: Inserting into the Database ', err);
