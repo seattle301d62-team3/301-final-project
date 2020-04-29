@@ -10,5 +10,7 @@ CREATE TABLE pictures (
     small_image VARCHAR(900),
     thumbnail VARCHAR(900),
     author VARCHAR(100),
-    download VARCHAR(900)
+    download VARCHAR(900),
+    client_id VARCHAR (250),
+    project_id VARCHAR (250)
 );

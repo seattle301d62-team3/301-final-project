@@ -32,6 +32,7 @@ app.get('/', homePage);
 app.post('/search', handleSearchForm);
 app.post('/imageDetails', imageDetails);
 app.post('/save', saveImage);
+app.get('/library', renderLibrary)
 app.get('*', fourOhFour);
 
 // Callback functions  
@@ -42,11 +43,12 @@ function homePage (request, response) {
 function handleSearchForm (request, response) {
   const { searchQuery } = request.body;  
   const key = process.env.API_KEY;
-  const url = `https://api.unsplash.com/search/photos?query=${searchQuery}&client_id=${key}`;
+  const url = `https://api.unsplash.com/search/photos?query=${searchQuery}&client_id=${key}&per_page=1`;
   
   superagent.get(url).then(apiResponse => {
     const data = apiResponse.body.results;
     return data.map(element => new Picture(element));
+
   })
   .then(apiResults => {
     response.render('pages/search-results', { apiResults });
@@ -60,26 +62,55 @@ function handleSearchForm (request, response) {
 }
 
 function imageDetails(request, response) {
-  const picture = request.body;
+  const picture = request.body;  
   response.render('pages/image-details', { picture });
 }
 
 function saveImage (request, response) {
-  const { category, name, description, full_description, image, small_image, thumbnail, author, download } = request.body;
+  const { category, _name, description, full_description, image, small_image, thumbnail, author, download, client_id, project_id } = request.body;
+
+  // client_id = client_id ? client_id : 'n/a';
+  // project_id = project_id ? project_id : 'n/a;
   
-  let insertSQL = `INSERT INTO pictures (category, _name, description, full_description, image, small_image, thumbnail, author, download) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`;
-  let insertValues = [category, name, description, full_description, image, small_image, thumbnail, author, download];
+  let insertSQL = `INSERT INTO pictures (category, _name, description, full_description, image, small_image, thumbnail, author, download, client_id, project_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *`;
+  let insertValues = [category, _name, description, full_description, image, small_image, thumbnail, author, download, client_id, project_id];
   
+  let selectSQL = `SELECT * FROM pictures`;
+
   dbClient.query(insertSQL, insertValues).then(recordResponse => {
-    // item is stored
-    response.send('I saved');
+    // inserted into DB and refreshed page
+    response.status(204).send();
   })
   .catch((err) => {
     console.error('Error: Inserting into the Database ', err);
     response.status(500).render('pages/error', 
-    {errorMessage: 'Could not get what you wanted from the API search.', 
-    errorCorrect: `Make sure you're searching for something valid.`});
+    {
+      errorMessage: 'Could not get what you wanted from the API search.', 
+      errorCorrect: `Make sure you're searching for something valid.`
+    });
   }) 
+}
+
+function selectByProject(request, response){
+  let data = request.body;
+  let client = request.body.project;
+  let sql = `SELECT * FROM pictures WHERE project_id = $1;`;
+  let safeValues = [project];
+  dbClient.query(sql, safevalues)
+    .then(results => {
+      response.render('pages/project-overview')
+    })
+}
+
+function addCustomer(request, response){
+  let data = request.body.customer;
+  let sql =  `INSERT INTO client (name) VALUES ($1);`;
+  let safeValues = [data];
+
+  dbClient.query(sql, safeValues)
+    .then((results) => {
+      response.render('pages/library', {});
+    })
 }
 
 function fourOhFour (request, response) {
@@ -112,3 +143,27 @@ function fourOhFour (request, response) {
         app.listen(PORT, () => console.log(`Listening on PORT: ${blue(PORT)}`));
       }
     });
+
+
+
+    function renderLibrary (request, response) {
+      let sql1 = `SELECT DISTINCT client_id FROM pictures;`;
+      let sql2 = `SELECT * FROM pictures GROUP BY client_id`
+      // let sql = `SELECT DISTINCT client_id FROM pictures WHERE project_id=$1;`;
+      
+      dbClient.query(sql1)
+      .then(results => {
+          response.render('pages/library', { customers: results.rows });
+        })
+        .catch((err) => {
+          console.error('Error: Inserting into the Database ', err);
+          response.status(500).render('pages/error', 
+          {
+            errorMessage: 'Did find what you were looking for', 
+            errorCorrect: `Make sure you're searching for an existing client or project. You may need to create a new Client or Project.`
+          });
+        }) 
+
+    }
+
+
