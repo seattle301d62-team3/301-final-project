@@ -8,13 +8,7 @@
 </head>
 <body>
 
-  <header>
-    <ul>
-      <li><a href=''>Home</a></li>
-      <li><a href=''>Library</a></li>
-      <li><a href=''>Nav stuff</a></li>
-    </ul>
-  </header>
+  <%- include('../layouts/header.ejs') %>
   <div id='hero-image'>
     <div id='hero-text'>
       <form action="/search" method="POST">
@@ -27,25 +21,22 @@
   <div id='features-section'>
     <h2>Features Section</h2>
     <article id='feature-holder'>
-      <a href=''><img src='https://via.placeholder.com/230x280/#8080'></a>
-      <a href=''><img src='https://via.placeholder.com/230x280/#8080'></a>
-      <a href=''><img src='https://via.placeholder.com/230x280/#8080'></a>
-      <a href=''><img src='https://via.placeholder.com/230x280/#8080'></a>
+      <a href=''><img src='https://via.placeholder.com/200x250/#8080'></a>
+      <a href=''><img src='https://via.placeholder.com/200x250/#8080'></a>
+      <a href=''><img src='https://via.placeholder.com/200x250/#8080'></a>
+      <a href=''><img src='https://via.placeholder.com/200x250/#8080'></a>
     </article>
-  </div>
 
   <div id='sample-categories'>
     <h2>Sample Categories</h2>
     <article id='category-holder'>
-      <a href=''><img src='https://via.placeholder.com/230x280/#8080'></a>
-      <a href=''><img src='https://via.placeholder.com/230x280/#8080'></a>
-      <a href=''><img src='https://via.placeholder.com/230x280/#8080'></a>
-      <a href=''><img src='https://via.placeholder.com/230x280/#8080'></a>
+      <a href=''><img src='https://via.placeholder.com/200x250/#8080'></a>
+      <a href=''><img src='https://via.placeholder.com/200x250/#8080'></a>
+      <a href=''><img src='https://via.placeholder.com/200x250/#8080'></a>
+      <a href=''><img src='https://via.placeholder.com/200x250/#8080'></a>
     </article>
   </div>
-  <footer>
-    <p>&copy; Team 3</p> <p><a href=''>link to top</a></p> <p><a href=''>about us</a></p>
-  </footer>
+  <%- include('../layouts/footer.ejs') %>
 
 
 </body>
