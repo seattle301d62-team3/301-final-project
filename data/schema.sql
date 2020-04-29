@@ -14,3 +14,14 @@ CREATE TABLE pictures (
     client_id VARCHAR (250),
     project_id VARCHAR (250)
 );
+
+CREATE TABLE client (
+    id SERIAL PRIMARY KEY,
+    _name VARCHAR(255)
+);
+
+CREATE TABLE project (
+    id SERIAL PRIMARY KEY,
+    _name VARCHAR(255),
+    client_id VARCHAR(255)
+);
