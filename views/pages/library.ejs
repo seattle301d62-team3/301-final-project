@@ -4,10 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='styles/base.css' rel='stylesheet' type='text/css'>
     <title>Document</title>
 </head>
 <body>
-    
+  <%- include('../layouts/header.ejs') %>  
+
     <% customers.forEach(client => {  %>
         <h3><%= client.client_id %> </h3>
         
@@ -25,6 +27,7 @@
         - Project 14 
         - Project 20 
     
+        <%- include('../layouts/footer.ejs') %>
 </body>
 </html>
 
