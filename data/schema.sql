@@ -1,4 +1,6 @@
 DROP TABLE IF EXISTS pictures;
+DROP TABLE IF EXISTS client;
+DROP TABLE IF EXISTS project;
 
 CREATE TABLE pictures (
     id SERIAL PRIMARY KEY,
