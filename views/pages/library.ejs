@@ -12,15 +12,22 @@
 
     <% customers.forEach(client => {  %>
         <h3><%= client %> </h3>
-
-        <form action="/library/client-details" method="POST">
-            <button type="submit" name="client" value=<%= client %> >View Projects</button>            
-        </form>
-
-
         
     <% }) %>
-    <%- include('../layouts/footer.ejs') %>
+
+
+
+    <!-- Client A 
+       - Project 1
+
+    Client B 
+        - Project 14 
+        - Project 20 
+    Client C 
+        - Project 14 
+        - Project 20  -->
+    
+        <%- include('../layouts/footer.ejs') %>
 </body>
 </html>
 
