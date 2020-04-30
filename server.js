@@ -51,7 +51,7 @@ function handleSearchForm (request, response) {
 
   })
   .then(apiResults => {
-    response.render('pages/search-results', { apiResults });
+    response.render('pages/search-results', { apiResults, searchQuery });
   })
   .catch((err) => {
     console.error('Error when getting form data: ', err);
@@ -72,46 +72,91 @@ function saveImage (request, response) {
   // client_id = client_id ? client_id : 'n/a';
   // project_id = project_id ? project_id : 'n/a;
   
-  let insertSQL = `INSERT INTO pictures (category, _name, description, full_description, image, small_image, thumbnail, author, download, client_id, project_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *`;
-  let insertValues = [category, _name, description, full_description, image, small_image, thumbnail, author, download, client_id, project_id];
+  let insertPicturesSQL = `INSERT INTO pictures (category, _name, description, full_description, image, small_image, thumbnail, author, download, client_id, project_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *`;
+  let insertPicturesValues = [category, _name, description, full_description, image, small_image, thumbnail, author, download, client_id, project_id];
   
-  let selectSQL = `SELECT * FROM pictures`;
+  let insertClientSQL = `INSERT INTO client (_name) VALUES ($1);`
+  let matchClient = `SELECT * FROM client WHERE _name=$1;`
+  let clientValues = [client_id];
 
-  dbClient.query(insertSQL, insertValues).then(recordResponse => {
-    // inserted into DB and refreshed page
-    response.status(204).send();
-  })
+  let insertProjectSQL = `INSERT INTO project (_name, client_id) VALUES ($1, $2);`;
+  let matchProject = `SELECT * FROM project WHERE _name=$1 and client_id=$2;`;
+  let projectValues = [project_id, client_id];
+
+  dbClient.query(insertPicturesSQL, insertPicturesValues)
+    .then(recordResponse => {
+      dbClient.query(matchClient, clientValues)
+      .then(matchResults => {
+        if (matchResults.rowCount === 0) {
+          dbClient.query(insertClientSQL, clientValues)
+        }
+      })
+    })
+    .then(results => {
+      dbClient.query(matchProject, projectValues)
+      .then(matchProjectResults => {
+        if (matchProjectResults.rowCount === 0){
+          dbClient.query(insertProjectSQL, projectValues)
+        }
+      })
+    })
+    .then(()=> {
+        // inserted into DB and refreshed page
+        response.status(204).send();
+    })
   .catch((err) => {
     console.error('Error: Inserting into the Database ', err);
     response.status(500).render('pages/error', 
     {
       errorMessage: 'Could not get what you wanted from the API search.', 
       errorCorrect: `Make sure you're searching for something valid.`
-    });
-  }) 
-}
-
-function selectByProject(request, response){
-  let data = request.body;
-  let client = request.body.project;
-  let sql = `SELECT * FROM pictures WHERE project_id = $1;`;
-  let safeValues = [project];
-  dbClient.query(sql, safevalues)
-    .then(results => {
-      response.render('pages/project-overview')
     })
+  })
 }
 
-function addCustomer(request, response){
-  let data = request.body.customer;
-  let sql =  `INSERT INTO client (name) VALUES ($1);`;
-  let safeValues = [data];
+function renderLibrary (request, response) {
+  let clientSQL = `SELECT * FROM client`;
+  let projectSQL = `SELECT * FROM project`;
+  let clientValue = [proj_id, client_id]
+  
+  dbClient.query(clientSQL)
+  .then(records => {
 
-  dbClient.query(sql, safeValues)
-    .then((results) => {
-      response.render('pages/library', {});
-    })
+    let customers = records.rows.map(object => {
+      return object._name;
+    }).sort()
+    response.render('pages/library', { customers });
+  })
+  .catch((err) => {
+      console.error('Error: Inserting into the Database ', err);
+      response.status(500).render('pages/error', 
+      {
+        errorMessage: 'Did find what you were looking for', 
+        errorCorrect: `Make sure you're searching for an existing client or project. You may need to create a new Client or Project.`
+      });
+    }) 
 }
+// function selectByProject(request, response){
+//   let data = request.body;
+//   let client = request.body.project;
+//   let sql = `SELECT * FROM pictures WHERE project_id = $1;`;
+//   let safeValues = [project];
+//   dbClient.query(sql, safevalues)
+//     .then(results => {
+//       response.render('pages/project-overview')
+//     })
+// }
+
+// function addCustomer(request, response){
+//   let data = request.body.customer;
+//   let sql =  `INSERT INTO client (name) VALUES ($1);`;
+//   let safeValues = [data];
+
+//   dbClient.query(sql, safeValues)
+//     .then((results) => {
+//       response.render('pages/library', {});
+//     })
+// }
 
 function fourOhFour (request, response) {
   response.status(404).render('pages/error', {
@@ -145,34 +190,26 @@ function fourOhFour (request, response) {
     });
 
 
-
-    function renderLibrary (request, response) {
-      let sql1 = `SELECT DISTINCT client_id FROM pictures`;
-      let sql2 = `SELECT * FROM pictures GROUP BY client_id`
-      // let sql = `SELECT DISTINCT client_id FROM pictures WHERE project_id=$1;`;
-      
-      dbClient.query(sql1)
-      .then(results => {
-
-        let data = results.rows;
-        // console.log(customers);
-        
-
-        let customers = data.map(object => {
-          return object.client_id
-        }).sort()
-
-          response.render('pages/library', { customers });
-        })
-        .catch((err) => {
-          console.error('Error: Inserting into the Database ', err);
-          response.status(500).render('pages/error', 
-          {
-            errorMessage: 'Did find what you were looking for', 
-            errorCorrect: `Make sure you're searching for an existing client or project. You may need to create a new Client or Project.`
-          });
-        }) 
-
-    }
+// let clientSQL = `SELECT * FROM client;`
 
 
+// dbClient.query(clientSQL)
+//    .then(results => {
+//      let clientList = results.rows;  
+         
+//    })
+//    .then(results => {
+//      let projectSQL = `SELECT _name FROM project where client_id=$1;`
+    
+//      clientList.forEach(client => {
+//        let projClient = [client];
+//        dbClient.query(projectSQL, projClient)
+//          .then(results => {
+//             response.status(204).
+//          })
+//      })
+    
+    
+// })
+    
+    
