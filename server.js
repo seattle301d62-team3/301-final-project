@@ -12,14 +12,6 @@ app.use(methodOverride('_method'));
 app.use(express.static('./public'));
 app.set('view engine', 'ejs');
 
-// Chalk - Color coding for console logs  
-const chalk = require('chalk');
-// const orange = chalk.keyword('orange');
-const green = chalk.keyword('green');
-const blue = chalk.keyword('cyan');
-
-const log = (color, value) => console.log(chalk.keyword(color)(JSON.stringify(value)));
-
 // Postgress and PORT
 const pg = require('pg');
 const dbClient = new pg.Client(process.env.DATABASE_URL);
@@ -46,9 +38,7 @@ function homePage (request, response) {
 function handleSearchForm (request, response) {
   const { searchQuery } = request.body;  
   const key = process.env.API_KEY;
-  const url = `https://api.unsplash.com/search/photos?query=${searchQuery}&client_id=${key}&per_page=1`;
-
-  log(url, 'red');
+  const url = `https://api.unsplash.com/search/photos?query=${searchQuery}&client_id=${key}&per_page=30`;
   
   superagent.get(url).then(apiResponse => {
     const data = apiResponse.body.results;
@@ -121,8 +111,6 @@ function saveImage (request, response) {
 
 function renderLibraryHome (request, response) {
   let clientSQL = `SELECT * FROM client`;
-  // let projectSQL = `SELECT * FROM project`;
-  // let clientValue = [proj_id, client_id]
   
   dbClient.query(clientSQL)
   .then(records => {
@@ -180,7 +168,6 @@ function renderProjectDetails (request, response) {
     })
 }
 
-
 function fourOhFour (request, response) {
   response.status(404).render('pages/error', {
     errorMessage: 'Page not found', 
@@ -189,7 +176,6 @@ function fourOhFour (request, response) {
   )}
   
   // *** Constructor Functions ***
-  
   function Picture (obj) {
     this.category = obj.tags[0].title ? obj.tags[0].title : "No category found.";
     this._name = obj.description ? obj.description : "No name found.";
@@ -206,33 +192,8 @@ function fourOhFour (request, response) {
       if (err){
         console.error('Connection Error with Database', err.stack);
       } else {
-        console.log(green('Connected to Database!'));
+        console.log('Connected to Database!');
         //Turn app on to listening
-        app.listen(PORT, () => console.log(`Listening on PORT: ${blue(PORT)}`));
+        app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));
       }
     });
-
-
-// let clientSQL = `SELECT * FROM client;`
-
-
-// dbClient.query(clientSQL)
-//    .then(results => {
-//      let clientList = results.rows;  
-         
-//    })
-//    .then(results => {
-//      let projectSQL = `SELECT _name FROM project where client_id=$1;`
-    
-//      clientList.forEach(client => {
-//        let projClient = [client];
-//        dbClient.query(projectSQL, projClient)
-//          .then(results => {
-//             response.status(204).
-//          })
-//      })
-    
-    
-// })
-    
-    
