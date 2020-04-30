@@ -14,10 +14,15 @@ app.set('view engine', 'ejs');
 
 // Chalk - Color coding for console logs  
 const chalk = require('chalk');
-const red = chalk.keyword('red');
-const orange = chalk.keyword('orange');
+// const orange = chalk.keyword('orange');
 const green = chalk.keyword('green');
 const blue = chalk.keyword('cyan');
+
+const log = (value, color) => console.log(chalk.keyword(color)(JSON.stringify(value)));
+
+
+
+
 
 // Postgress and PORT
 const pg = require('pg');
@@ -32,7 +37,7 @@ app.get('/', homePage);
 app.post('/search', handleSearchForm);
 app.post('/imageDetails', imageDetails);
 app.post('/save', saveImage);
-app.get('/library', renderLibrary)
+app.get('/library/home', renderLibraryHome)
 app.get('*', fourOhFour);
 
 // Callback functions  
@@ -44,6 +49,8 @@ function handleSearchForm (request, response) {
   const { searchQuery } = request.body;  
   const key = process.env.API_KEY;
   const url = `https://api.unsplash.com/search/photos?query=${searchQuery}&client_id=${key}&per_page=1`;
+
+  log(url, 'red');
   
   superagent.get(url).then(apiResponse => {
     const data = apiResponse.body.results;
@@ -51,6 +58,9 @@ function handleSearchForm (request, response) {
 
   })
   .then(apiResults => {
+      // log(apiResults, 'yellow');
+
+    
     response.render('pages/search-results', { apiResults, searchQuery });
   })
   .catch((err) => {
@@ -114,12 +124,12 @@ function saveImage (request, response) {
   })
 }
 
-function renderLibrary (request, response) {
-  let clientSQL = `SELECT * FROM client`;
+function renderLibraryHome (request, response) {
+  // let clientSQL = `SELECT * FROM client`;
   let projectSQL = `SELECT * FROM project`;
-  let clientValue = [proj_id, client_id]
+  // let clientValue = [proj_id, client_id]
   
-  dbClient.query(clientSQL)
+  dbClient.query(projectSQL)
   .then(records => {
 
     let customers = records.rows.map(object => {
@@ -136,6 +146,9 @@ function renderLibrary (request, response) {
       });
     }) 
 }
+
+
+
 // function selectByProject(request, response){
 //   let data = request.body;
 //   let client = request.body.project;
