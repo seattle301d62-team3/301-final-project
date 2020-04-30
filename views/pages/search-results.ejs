@@ -10,7 +10,7 @@
 <body>
   <%- include('../layouts/header.ejs') %>
   <main>
-    <h2 class='searched-word'> <%= searchQuery %> </h2>
+    <%= searchQuery %>
     <% apiResults.forEach(obj => { %>
       <div class='searched-images'>
           <form action="/imageDetails" method="POST">
@@ -28,7 +28,7 @@
               <button class = "imageDeatilsButton" type="submit">
                   <img src=<%= obj.small_image %> />
               </button>
-             </fieldset>
+            </fieldset>
               <fieldset class="organization">
                 <input type="text" name="client_id" value="Customer Name Here" placeholder="Customer Name">
                 <input type="text" name="project_id" value="Project Name Here" placeholder="Project Name">
