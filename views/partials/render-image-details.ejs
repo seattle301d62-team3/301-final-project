@@ -7,11 +7,11 @@
   <title>Document</title>
 </head>
 <body>
-  <main>
-    <h1><%= picture.name %> </h1> <br><br>
-    <img src=<%= picture.thumbnail %>> <br><br>
-    <p>Photo by: <%= picture.author  %></p> <br><br>
-    <a href="<%= picture.download %>" target="_blank">Download Link.</a> <br><br>
+  <main id='image-detail-main'>
+    <img id='picture-thumbnail' src=<%= picture.thumbnail %>> 
+    <h1 id='picture-name'><%= picture.name %> </h1> 
+    <p id='picture-author'>Photo by: <%= picture.author  %></p> 
+    <a id='download-link' href="<%= picture.download %>" target="_blank">Download Link.</a> <br><br>
     
     <br><br>
     

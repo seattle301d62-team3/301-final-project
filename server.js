@@ -51,7 +51,7 @@ function handleSearchForm (request, response) {
 
   })
   .then(apiResults => {
-    response.render('pages/search-results', { apiResults });
+    response.render('pages/search-results', { apiResults, searchQuery});
   })
   .catch((err) => {
     console.error('Error when getting form data: ', err);
