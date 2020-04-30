@@ -11,7 +11,6 @@
   <%- include('../layouts/header.ejs') %>
   <main>
     <%= searchQuery %>
-
     <% apiResults.forEach(obj => { %>
       <div class='searched-images'>
           <form action="/imageDetails" method="POST">

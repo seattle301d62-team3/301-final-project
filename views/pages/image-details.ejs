@@ -8,8 +8,11 @@
     <link href='styles/base.css' rel='stylesheet' type='text/css'>
 </head>
 <body>
-    <%- include('../layouts/header.ejs') %>
+  <%- include('../layouts/header.ejs') %>
+  <section>
     <%-include("../partials/render-image-details", { picture }) %> 
+  </section>
     <%- include('../layouts/footer.ejs') %>
+
 </body>
 </html>
