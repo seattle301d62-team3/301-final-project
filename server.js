@@ -14,10 +14,11 @@ app.set('view engine', 'ejs');
 
 // Chalk - Color coding for console logs  
 const chalk = require('chalk');
-const red = chalk.keyword('red');
-const orange = chalk.keyword('orange');
+// const orange = chalk.keyword('orange');
 const green = chalk.keyword('green');
 const blue = chalk.keyword('cyan');
+
+const log = (color, value) => console.log(chalk.keyword(color)(JSON.stringify(value)));
 
 // Postgress and PORT
 const pg = require('pg');
@@ -32,7 +33,9 @@ app.get('/', homePage);
 app.post('/search', handleSearchForm);
 app.post('/imageDetails', imageDetails);
 app.post('/save', saveImage);
-app.get('/library', renderLibrary)
+app.post('/library/client-details', renderClientProjects);
+app.post('/library/project-details', renderProjectDetails);
+app.get('/library/home', renderLibraryHome)
 app.get('*', fourOhFour);
 
 // Callback functions  
@@ -44,6 +47,8 @@ function handleSearchForm (request, response) {
   const { searchQuery } = request.body;  
   const key = process.env.API_KEY;
   const url = `https://api.unsplash.com/search/photos?query=${searchQuery}&client_id=${key}&per_page=1`;
+
+  log(url, 'red');
   
   superagent.get(url).then(apiResponse => {
     const data = apiResponse.body.results;
@@ -114,10 +119,10 @@ function saveImage (request, response) {
   })
 }
 
-function renderLibrary (request, response) {
+function renderLibraryHome (request, response) {
   let clientSQL = `SELECT * FROM client`;
-  let projectSQL = `SELECT * FROM project`;
-  let clientValue = [proj_id, client_id]
+  // let projectSQL = `SELECT * FROM project`;
+  // let clientValue = [proj_id, client_id]
   
   dbClient.query(clientSQL)
   .then(records => {
@@ -136,27 +141,45 @@ function renderLibrary (request, response) {
       });
     }) 
 }
-// function selectByProject(request, response){
-//   let data = request.body;
-//   let client = request.body.project;
-//   let sql = `SELECT * FROM pictures WHERE project_id = $1;`;
-//   let safeValues = [project];
-//   dbClient.query(sql, safevalues)
-//     .then(results => {
-//       response.render('pages/project-overview')
-//     })
-// }
 
-// function addCustomer(request, response){
-//   let data = request.body.customer;
-//   let sql =  `INSERT INTO client (name) VALUES ($1);`;
-//   let safeValues = [data];
+function renderClientProjects (request, response) {
+  const { client } = request.body  
+  let matchSQL = `SELECT (_name) FROM project WHERE client_id=$1;`;
+  let matchValue = [client]
+ 
+  dbClient.query(matchSQL, matchValue)
+    .then(projectResponse => {
+      let data = projectResponse.rows
+      let project = data.map(element => element._name)
+      response.render('pages/client-details', {client, project})
 
-//   dbClient.query(sql, safeValues)
-//     .then((results) => {
-//       response.render('pages/library', {});
-//     })
-// }
+    })
+    .catch((err) => {
+      console.error('Error in renderProjects ', err);
+      response.status(500).render('pages/error', 
+      {
+        errorMessage: 'Could not find info on that client', 
+        errorCorrect: `Make sure this client exists / has projects.`
+      });
+    }) 
+}
+
+function renderProjectDetails (request, response) {
+  const {client, project} = request.body
+
+  let sql = `SELECT image FROM pictures WHERE client_id=$1 and project_id=$2;`
+  let sqlValues = [client, project]
+
+  dbClient.query(sql, sqlValues)
+    .then(results => {
+      let data = results.rows
+      let picture =data.map(obj => {
+        return obj.image;
+      })
+      response.render('pages/project-details', { picture })
+    })
+}
+
 
 function fourOhFour (request, response) {
   response.status(404).render('pages/error', {
@@ -181,7 +204,7 @@ function fourOhFour (request, response) {
   // Database connection
   dbClient.connect(err => {
       if (err){
-        console.error(red('Connection Error with Database'), err.stack);
+        console.error('Connection Error with Database', err.stack);
       } else {
         console.log(green('Connected to Database!'));
         //Turn app on to listening
