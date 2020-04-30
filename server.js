@@ -25,9 +25,7 @@ app.get('/', homePage);
 app.post('/search', handleSearchForm);
 app.post('/imageDetails', imageDetails);
 app.post('/save', saveImage);
-app.post('/library/client-details', renderClientProjects);
-app.post('/library/project-details', renderProjectDetails);
-app.get('/library/home', renderLibraryHome)
+app.get('/library', renderLibrary)
 app.get('*', fourOhFour);
 
 // Callback functions  
@@ -111,9 +109,8 @@ function saveImage (request, response) {
   })
 }
 
-function renderLibraryHome (request, response) {
-  let clientSQL = `SELECT * FROM client`;
-  
+function renderLibrary (request, response) {
+  let clientSQL = `SELECT * FROM client`; 
   dbClient.query(clientSQL)
   .then(records => {
 
@@ -170,6 +167,7 @@ function renderProjectDetails (request, response) {
     })
 }
 
+
 function fourOhFour (request, response) {
   response.status(404).render('pages/error', {
     errorMessage: 'Page not found', 
@@ -192,7 +190,7 @@ function fourOhFour (request, response) {
   // Database connection
   dbClient.connect(err => {
       if (err){
-        console.error('Connection Error with Database', err.stack);
+        console.error(red('Connection Error with Database'), err.stack);
       } else {
         console.log('Connected to Database!');
         //Turn app on to listening
