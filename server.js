@@ -35,6 +35,8 @@ function homePage (request, response) {
   response.render('pages/index');
 }
 
+// something new
+
 function handleSearchForm (request, response) {
   const { searchQuery } = request.body;  
   const key = process.env.API_KEY;
