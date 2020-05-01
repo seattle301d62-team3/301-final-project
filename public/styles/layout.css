@@ -16,6 +16,13 @@ header{
   width: 100%;
   height: 75px;
   background-color: #357376;
+  align-items: center;
+}
+
+#logo{
+  color: white;
+  margin: 40px;
+  max-width: 15%;
 }
 
 ul {
@@ -33,19 +40,18 @@ li {
   align-items: center;
   height: 100%;
   padding: 16px 50px;
-  display: inline-block;
+  /* display: inline-block; */
   text-align: center;
-  width: 30%;
+  width: 100%;
 }
 
 li a {
-  /* display: block; */
   color: white;
   text-align: center;
   text-decoration: none;
-  padding: 14px 25px;
   height:100%;
   line-height: 75px;
+  width: 100%;
 }
 
 li:hover {
@@ -86,15 +92,15 @@ input{
 }
 
 #search-input{
-  width: 80%;
+  width: 70%;
   height: 34px;
   border-radius: 20px 0 0 20px;
   border: none;
-
+  text-align: center;
 }
 
 #search-submit{
-  width: 17%;
+  width: 25%;
   height: 36px;
   border: none;
   border-radius: 0 20px 20px 0;
@@ -104,9 +110,27 @@ input{
   background: lightgray;
 }
 
+/* Sample Category Buttons */
+.sample-button-container{
+  height: 10%;
+  min-width: 40%;
+  max-width: 40%;
+}
+
+#test-button {
+  background-image: url('/images/turtle.jpeg');
+  height: 150px;
+  min-width: 100%;
+  max-width: 100%;
+  background-size: percentage(100%); 
+}
+
+/* END Sample Category Buttons */
+
+
 form{
   text-align: center;
-  /* display: inline-block; */
+  
 }
 
 h2{
@@ -124,36 +148,49 @@ h2{
   width: 200px;
 }
 
+#feature-holder button{
+  border: thin solid slategray;
+  border-right: 2px solid darkslategray;
+  border-bottom: 2px solid darkslategray;
+  margin: 20px 0;
+  padding: 7px;
+  border-radius: 7px;
+  box-shadow: 4px 5px lightslategrey;
+}
+
 #feature-holder img{
   width: 200px;
 }
 
 article{
-  /* float: left; */
   width: 100%;
   display: flex;
   flex-flow: row wrap;
-  vertical-align: middle;
-  margin-left: 10px;
   justify-content: space-evenly;
 }
 
 article a{
-  display: inline-block;
   width: 40%;
 }
 
 main{
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   width: 100%;
+  
+}
+
+
+/* Search Results */
+#searched-main{
+  justify-content: space-around;
 }
 
 .searched-word{
   width: 100%;
-
 }
+
+
 
 #image-detail-main{
   display: flex;
@@ -179,29 +216,123 @@ main{
 
 section{
   display: flex;
-
 }
 
 .searched-images{
   display: flex;
   width: 40%;
-  min-height: 200px;
+  height: auto;
+  /* height: 200px; */
   align-items: center;
   justify-content: space-evenly;
+  margin-bottom: 60px;
+  
 }
 
-#imageDetailsButton{
+.image-results{
   width: 100%;
+  height: 100%;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+}
+
+.image-results fieldset {
+  display: flex;
+  justify-items: center;
+  border-radius: 14px;
+  box-shadow: 4px 5px lightslategray;
+}
+
+.image-results fieldset input{
+  width: 100%;
+  height: 20px;
+  border-radius: 21px;
+  text-align: center;
+  border: inset thin slategray;
+  margin: 21px 0;
+}
+
+.save {
+  width: 60%;
+  height: 20px;
+  border: thin solid darkslategray;
+  border-radius: 14px;
+  margin: 14px auto;
+  
+}
+
+.imageDetailsButton{
+  width: 100%;
+  height: 100%;
   align-items: center;
   border: none;
-  background: none;
+  background-color: transparent !important;
+  border-radius: 14px;
+}
+fieldset{
+  height: 100%;
 }
 
+.imgimg {
+  width: 100%;
+  border-radius: 14px;
+  /* max-height: 100%; */
+}
+
+/* .organization{
+  display: none;
+} */
+
+/* Client Overview /Library/Project Overviews */
+.folder-container{
+  display: flex;
+  width: 50%;
+  height: 100%;
+  flex-direction: column;
+  justify-items: flex-start;  
+}
+
+.folder-wrapper{
+  width: 100%;
+  
+}
+
+.folder-button{
+  width: 100%;
+  border: .05rem solid black;
+  background: none;
+  text-align: start;
+  margin: 14px;
+  padding: 14px;
+  border-radius: 5px;
+  box-shadow: 3px 4px lightslategray;
+}
+
+.folder-button:hover{
+  border: 2px solid greenyellow;
+  padding: 12.7px;
+}
+
+.project-details-main {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.project-images{
+  margin: 20px 0;
+}
+
+/* Footer */
 footer{
-  display: inline-block;
   background-color: #357376;
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-wrap: nowrap;
@@ -213,10 +344,19 @@ footer p{
 }
 
 /* tablet */
-
+@media(min-width: 640px){  
+  .project-details-main{
+    width: 100%;
+    height: 100%;
+  }
+  .project-images{
+    width: 45%;
+    margin: 40px 0;
+  }
 /* desktop */
 
  @media(min-width: 960px){
+
   /* body{
     background-color: rgb(182, 200, 201);
     width: 100%;

@@ -13,9 +13,27 @@
     <p id='picture-author'>Photo by: <%= picture.author  %></p> 
     <a id='download-link' href="<%= picture.download %>" target="_blank">Download Link.</a> <br><br>
     
-    <br><br>
-    
-    <form action="/save" method="POST">
+
+    <form class="image-results" action="/imageDetails" method="POST">
+      <fieldset>
+      <input type="hidden" name= "category" value="<%= picture.category %>">
+      <input type="hidden" name= "name" value="<%= picture._name %>">
+      <input type="hidden" name= "description" value="<%= picture.description %>">
+      <input type="hidden" name= "full_description" value="<%= picture.full_description %>">
+      <input type="hidden" name= "image" value="<%= picture.image %>">
+      <input type="hidden" name= "small_image" value="<%= picture.small_image %>">
+      <input type="hidden" name= "thumbnail" value="<%= picture.thumbnail %>">
+      <input type="hidden" name= "author" value="<%= picture.author %>">
+      <input type="hidden" name= "download" value="<%= picture.download %>">
+      
+    <!-- </fieldset>            
+      <fieldset class="organization"> -->
+        <input type="text" name="client_id" value="Customer Name Here" placeholder="Customer Name">
+        <input type="text" name="project_id" value="Project Name Here" placeholder="Project Name">
+        <button class="save" type="subtmit" formaction="/save" onclick="myAlert()">Save</button>
+      </fieldset>
+    </form>
+    <!-- <form action="/save" method="POST">
         <input type="hidden" name= "category" value="<%= picture.category %>">
         <input type="hidden" name= "name" value="<%= picture.name %>">
         <input type="hidden" name= "description" value="<%= picture.description %>">
@@ -26,16 +44,10 @@
         <input type="hidden" name= "author" value="<%= picture.author %>">
         <input type="hidden" name= "download" value="<%= picture.download %>">
         
-        <select>
-            <option value="folder-1">Folder 1</option>
-            <option value="folder-2">Folder 2</option>
-            <option value="folder-3">Folder 3</option>
-            <option value="folder-4">Folder 4</option>
-            <option value="folder-5">Folder 5</option>
-        </select>
+        
         <button class = "saveImageDeatilsButton" type="submit" onclick="myAlert()">Save This Photo</button>
     
-        <br><br>
+        <br><br> -->
     
         <a href="/">back to home page</a> 
     </form>
