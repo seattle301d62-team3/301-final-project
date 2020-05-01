@@ -9,7 +9,7 @@ The idea behind this application is to allow a user to quickly search for free i
 
 ### Dependencies
 * Express  
-* dovenv  
+* dotenv  
 * superagent  
 * ejs  
 * pg  
@@ -49,8 +49,9 @@ The idea behind this application is to allow a user to quickly search for free i
 * 1.0.2 20200428 0905  
     - Created index feature branch for first ejs view.  
     - Created Search page shell ejs.  
-    
-
+* 1.0.3 20200428 0950  
+    - Created search-results feature for work on API search.  
+  
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details

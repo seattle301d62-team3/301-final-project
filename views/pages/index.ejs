@@ -4,13 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Photo App</title>
+    <link href='styles/base.css' rel='stylesheet' type='text/css'>
 </head>
 <body>
-    Some text for proof
-    <form action="/search" method="POST">
-    <button type="submit">CLICK TO GO TO SEARCH PAGE</button>
-    </form>
 
+  <%- include('../layouts/header.ejs') %>
+  <div id='hero-image'>
+    <div id='hero-text'>
+      <form id='search-form' action="/search" method="POST" >
+        <input id='search-input' type='text' name='searchQuery' placeholder='   search for an image'>
+        <button id='search-submit' type="submit">SEARCH</button>
+      </form>
+    </div>
+  </div>
+
+  <div id='features-section'>
+    <h2>Sample Categories</h2>
+    <article id='feature-holder'>
+
+      <button id='cat-button' name='searchQuery' type='submit' form='search-form' value='cat'>
+        <img src='/images/orangecat.jpeg'>
+      </button>
+
+      <button id='dog-button' type='submit' name='searchQuery' value='dog' form='search-form'>
+        <img src='/images/golden.jpeg'>
+      </button>
+
+      <button id='landscape-button' type='submit'  name='searchQuery' value='landscape' form='search-form'>
+        <img src='/images/landscape.jpeg'>
+      </button>
+
+      <button id='sports-button' type='submit'  name='searchQuery' value='sports' form='search-form'>
+        <img src='/images/sports.jpeg'>
+
+    </article>
+
+  <div id='sample-categories'>
+    <article id='category-holder'>
+
+      <button id='car-button' type='submit'  name='searchQuery' value='car' form='search-form'>
+        <img src='/images/car.png'>
+      </button>
+
+      <button id='flower-button' type='submit'  name='searchQuery' value='flower' form='search-form'>
+        <img src='/images/flower.jpeg'>
+      </button>
+
+      <button id='food-button' type='submit'  name='searchQuery' value='food' form='search-form'>
+        <img src='/images/food.jpeg'>
+      </button>
+
+      <button id='turtle-button' type='submit'  name='searchQuery' value='sea animal' form='search-form'>
+        <img src='/images/turtle.jpeg'>
+
+    </article>
+  </div>
+  <%- include('../layouts/footer.ejs') %>
 
 </body>
 </html>

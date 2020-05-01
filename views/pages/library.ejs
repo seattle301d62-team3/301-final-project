@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='styles/base.css' rel='stylesheet' type='text/css'>
+    <title>Document</title>
+</head>
+<body>
+  <%- include('../layouts/header.ejs') %>  
+
+    <% customers.forEach(client => {  %>
+        <h3><%= client %> </h3>
+
+        <form action="/library/client-details" method="POST">
+            <button type="submit" name="client" value=<%= client %> >View Projects</button>            
+        </form>
+
+
+        
+    <% }) %>
+    <%- include('../layouts/footer.ejs') %>
+</body>
+</html>
+
