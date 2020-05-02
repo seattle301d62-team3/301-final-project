@@ -169,7 +169,7 @@ function renderProjectDetails (request, response) {
     })
 }
 
-// Page Not Found
+// Page Not Found / Error Page
 function fourOhFour (request, response) {
   response.status(404).render('pages/error', {
     errorMessage: 'Page not found', 
