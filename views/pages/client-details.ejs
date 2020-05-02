@@ -8,7 +8,11 @@
 </head>
 <body>
     
+    <!-- No matter what, this page will not take a any "include". It says that include is not a function. I've even copied library.ejs here and it still gives the same -->
+
     <main class="folder-container">
+
+
         <h2><%= client  %> </h2>
         <form class="folder-wrapper" action="/library/project-details" method="POST">
             <input type="hidden" name="client" value="<%= client %>" />

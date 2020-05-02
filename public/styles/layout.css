@@ -1,16 +1,9 @@
-/* mobile */
-
-body{
-  background-color: rgb(201, 213, 213);
-  width: 100%;
-  /* margin: 0 auto; */
-}
-
-img{
-  max-width: 100%;
-}
+@import url('/styles/module.css');
+@import url('/styles/base.css');
+/* main chunks / placement */
 
 /* nav bar  */
+
 header{
   display: flex;
   width: 100%;
@@ -45,6 +38,10 @@ li {
   width: 100%;
 }
 
+li:hover {
+  background-color: #1E4042;
+}
+
 li a {
   color: white;
   text-align: center;
@@ -52,10 +49,6 @@ li a {
   height:100%;
   line-height: 75px;
   width: 100%;
-}
-
-li:hover {
-  background-color: #1E4042;
 }
 
 #hero-image{
@@ -79,9 +72,7 @@ width: 70%;
 }
 
 input{
-  line-height: 25px;
-  
-  
+  line-height: 25px; 
 }
 
 #search-form{
@@ -130,7 +121,6 @@ input{
 
 form{
   text-align: center;
-  
 }
 
 h2{
@@ -177,7 +167,6 @@ main{
   display: flex;
   flex-flow: row wrap;
   width: 100%;
-  
 }
 
 
@@ -189,8 +178,6 @@ main{
 .searched-word{
   width: 100%;
 }
-
-
 
 #image-detail-main{
   display: flex;
@@ -222,11 +209,9 @@ section{
   display: flex;
   width: 40%;
   height: auto;
-  /* height: 200px; */
   align-items: center;
   justify-content: space-evenly;
-  margin-bottom: 60px;
-  
+  margin-bottom: 60px; 
 }
 
 .image-results{
@@ -260,7 +245,6 @@ section{
   border: thin solid darkslategray;
   border-radius: 14px;
   margin: 14px auto;
-  
 }
 
 .imageDetailsButton{
@@ -281,10 +265,6 @@ fieldset{
   /* max-height: 100%; */
 }
 
-/* .organization{
-  display: none;
-} */
-
 /* Client Overview /Library/Project Overviews */
 .folder-container{
   display: flex;
@@ -296,7 +276,6 @@ fieldset{
 
 .folder-wrapper{
   width: 100%;
-  
 }
 
 .folder-button{
@@ -337,6 +316,7 @@ footer{
   align-items: center;
   flex-wrap: nowrap;
 }
+
 footer p{
   color: white;
   line-height: 30px;
@@ -353,70 +333,4 @@ footer p{
     width: 45%;
     margin: 40px 0;
   }
-/* desktop */
-
- @media(min-width: 960px){
-
-  /* body{
-    background-color: rgb(182, 200, 201);
-    width: 100%;
-    margin: 0 auto;
-  } */
-
-
-  
-/* 
-  input{
-    line-height: 25px;
-  }
-  
-  
-  form{
-    text-align: center;
-
-  } 
-  
-  h2{
-    text-align: center;
-    font-family: monospace;
-    font-size: x-large;
-    line-height: 50px;
-  }
-  
-  #feature-holder{
-    width: 100%;
-  }
-  
-  article{
-    width: 100%;
-    display: inline-block;    
-    flex-flow: row;
-  }
-
-  article a{
-    display: inline-block;
-    width: 250px;
-
-  } 
-
-  article img{
-    display: inline-block;
-    width: 250px;
-  }
-  
-  main{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-  }
-
-  .searched-images{
-    width: 80px;
-  }
-
-  .saveImageDetailsButton{
-    width: 100%;
-  }
-
-  */
+}
