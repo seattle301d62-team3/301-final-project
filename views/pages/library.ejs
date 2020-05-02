@@ -10,13 +10,14 @@
   <%- include('../layouts/header.ejs') %>  
 
   <main id="library-main" class="folder-container">
+    
       <h2> Client List </h2>
       <% customers.forEach(client => {  %>
-        <!-- <% if( client !== 'Customer Name Here' || client !== ' ') { %> -->
+        
           <form class="client-list folder-wrapper" action="/library/client-details" method="POST">
               <button class="client-list-button folder-button" type="submit" name="client" value=<%= client %> ><%= client %></button>            
           </form>
-          <!-- <% } %> -->
+          
       <% }) %>
 
 

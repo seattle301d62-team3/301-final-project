@@ -9,13 +9,17 @@
 <body>
   
 <%- include('../layouts/header.ejs') %>
+
   <main class="project-details-main">
+
     <% picture.forEach(pic => { %>
       <article class="project-images">
        <img class="" src="<%= pic %> ">
      </article>
    <% }) %> 
+   
   </main>
+
 <%- include('../layouts/footer.ejs') %>
 </body>
 </html>
