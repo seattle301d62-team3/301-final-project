@@ -10,12 +10,16 @@
 <body>
     
     <main class="folder-container">
+        
         <h2><%= client  %> </h2>
         <form class="folder-wrapper" action="/library/project-details" method="POST">
+
             <input type="hidden" name="client" value="<%= client %>" />
+
             <% project.forEach(item => { %>
             <button class="folder-button" type=submit name="project" value="<%= item %>"><%= item %></button>
-        <% }) %> 
+            <% }) %> 
+
         </form>
     
     </main>

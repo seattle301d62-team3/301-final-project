@@ -11,8 +11,11 @@
   <%- include('../layouts/header.ejs') %>
   
   <main id="searched-main">
+    <h2 class="searched-word"> <%= searchQuery %></h2>
   <% apiResults.forEach(obj => { %>
+
       <div class='searched-images'>
+
           <form class="image-results" action="/imageDetails" method="POST">
               <fieldset>
               <input type="hidden" name= "category" value="<%= obj.category %>">
@@ -28,18 +31,21 @@
               <button class = "imageDeatilsButton" type="submit">
                   <img class="imgimg" src=<%= obj.small_image %> />
               </button>
-            <!-- </fieldset>            
-              <fieldset class="organization"> -->
+            
                 <input type="text" name="client_id" value="Customer Name Here" placeholder="Customer Name">
                 <input type="text" name="project_id" value="Project Name Here" placeholder="Project Name">
                 <button class="save" type="subtmit" formaction="/save" onclick="myAlert()">Save</button>
               </fieldset>
-              <!-- <button class="saveMenu">Save</button> -->
+              
           </form>
+
         </div>
       <% }) %> 
+
   </main>
+
   <%- include('../layouts/footer.ejs') %>
+  
   <script
   src="https://code.jquery.com/jquery-3.5.0.js"
   integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
