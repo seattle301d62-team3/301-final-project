@@ -1,3 +1,52 @@
 @import url('/styles/reset.css');
 @import url('/styles/layout.css');
 @import url('/styles/module.css');
+/* base styles */
+
+body{
+  background-color: rgb(201, 213, 213);
+  width: 100%;
+}
+
+img{
+  max-width: 100%;
+}
+
+/* nav bar */
+header{
+  display: flex;
+  width: 100%;
+  height: 75px;
+  background-color: #357376;
+}
+
+main{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+article{
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  vertical-align: middle;
+  margin-left: 10px;
+  justify-content: space-evenly;
+}
+
+section{
+  display: flex;
+
+}
+
+footer{
+  display: inline-block;
+  background-color: #357376;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
