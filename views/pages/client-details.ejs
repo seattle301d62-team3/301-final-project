@@ -3,23 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Client Details</title>
-    <link href='styles/base.css' rel='stylesheet' type='text/css'>
-
+    <link href='/styles/base.css' rel='stylesheet' type='text/css'>
+    <title>Document</title>
 </head>
 <body>
     
+    <!-- No matter what, this page will not take a any "include". It says that include is not a function. I've even copied library.ejs here and it still gives the same -->
+
     <main class="folder-container">
-        
+
+
         <h2><%= client  %> </h2>
         <form class="folder-wrapper" action="/library/project-details" method="POST">
-
             <input type="hidden" name="client" value="<%= client %>" />
-
             <% project.forEach(item => { %>
             <button class="folder-button" type=submit name="project" value="<%= item %>"><%= item %></button>
-            <% }) %> 
-
+        <% }) %> 
         </form>
     
     </main>

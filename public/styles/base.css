@@ -1,6 +1,6 @@
 @import url('/styles/reset.css');
 @import url('/styles/layout.css');
-@import url('/styles/module.css');
+@import url('/styles/modules.css');
 /* base styles */
 
 body{
@@ -10,6 +10,10 @@ body{
 
 img{
   max-width: 100%;
+}
+button{
+  -webkit-appearance: none;
+  
 }
 
 /* nav bar */
