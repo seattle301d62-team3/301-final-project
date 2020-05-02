@@ -5,14 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Client Details</title>
     <link href='styles/base.css' rel='stylesheet' type='text/css'>
+
 </head>
 <body>
-        <h3><%= client  %> </h3>
-        <form action="/library/project-details" method="POST">
-             <input type="hidden" name="client" value="<%= client %>" />
-        <% project.forEach(item => { %>
-            <button type=submit name="project" value="<%= item %>"><%= item %></button>
+    
+    <main class="folder-container">
+        <h2><%= client  %> </h2>
+        <form class="folder-wrapper" action="/library/project-details" method="POST">
+            <input type="hidden" name="client" value="<%= client %>" />
+            <% project.forEach(item => { %>
+            <button class="folder-button" type=submit name="project" value="<%= item %>"><%= item %></button>
         <% }) %> 
         </form>
+    
+    </main>
 </body>
 </html>
